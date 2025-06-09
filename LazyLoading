@@ -1,0 +1,110 @@
+REACT LAZYLOADING
+It is optimized approach for performance issue
+## React Lazy Loading: Overview and Implementation
+
+**Lazy loading** in React is a performance optimization technique that defers loading non-essential components until they are actually needed, such as when they appear on the screen or when a user navigates to a particular route. This reduces the initial load time and bandwidth usage, especially in large applications with many components[4][6][1].
+
+---
+
+## How React Lazy Loading Works
+
+React provides built-in support for lazy loading components using the `React.lazy()` function and the `` component:
+
+- **`React.lazy()`**: Allows you to define a component that is loaded dynamically via a function that returns a promise (using `import()`).
+- **``**: Wraps lazy components and provides a fallback UI (like a loading spinner) while the component is being loaded[1][2][4].
+
+---
+
+## Basic Example
+
+```javascript
+import React, { Suspense, lazy } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+function App() {
+  return (
+    
+      React Lazy Loading Example
+      Loading...}>
+        
+      
+    
+  );
+}
+```
+- Here, `LazyComponent` is only loaded when it is actually rendered. While it loads, the text "Loading..." is displayed[4][1].
+
+---
+
+## Use Cases
+
+- **Route-based Lazy Loading**: Load components only when a user navigates to a specific route, often used with `react-router-dom`[4].
+- **Component-based Lazy Loading**: Load specific components (e.g., modals, images, widgets) only when they are needed[4].
+- **Image and Media Lazy Loading**: Use libraries like `react-lazy-load` or `react-lazyload` to defer loading images or other media until they enter the viewport[3][4].
+
+---
+
+## Benefits
+
+- **Improved Initial Load Time**: Only critical components are loaded initially, making the app feel faster[4][6].
+- **Reduced Bandwidth Usage**: Non-essential code is not downloaded until required[4].
+- **Better User Experience**: Users can interact with visible content sooner while non-critical parts load in the background[4].
+
+---
+
+## Challenges and Best Practices
+
+- **Increased Code Complexity**: Managing multiple lazy-loaded components can complicate state management, error handling, and routing[4].
+- **Loading States**: Always provide meaningful fallback UIs to avoid blank screens[4].
+- **SEO Considerations**: Lazy loading may affect SEO if important content is not loaded for web crawlers[4].
+- **Not for Small Apps**: Overusing lazy loading in small apps can actually degrade performance due to multiple network requests[4].
+- **Browser Compatibility**: Supported in all modern browsers, but polyfills may be needed for older ones[4].
+
+---
+
+## Third-Party Libraries
+
+- **react-lazy-load**: A component for lazy loading images and other content, using the Intersection Observer API for efficient detection[3].
+- **react-lazyload**: Another popular library for lazy loading elements as they enter the viewport[4].
+
+Example with `react-lazy-load`:
+
+```javascript
+import LazyLoad from 'react-lazy-load';
+
+const MyComponent = () => (
+  
+    
+  
+);
+```
+This will only load the image when it is about to appear in the viewport[3].
+
+---
+
+## Monitoring and Performance
+
+- Use tools like **Chrome DevTools**, **React Profiler**, **Lighthouse**, and **Webpack Bundle Analyzer** to monitor the impact of lazy loading on your app's performance[4].
+
+---
+
+## Summary Table: React Lazy Loading Approaches
+
+| Method               | Use Case                          | Example Syntax                                             |
+|----------------------|-----------------------------------|-----------------------------------------------------------|
+| React.lazy + Suspense| Component or route code-splitting | `const Comp = lazy(() => import('./Comp'));`              |
+| react-lazy-load      | Images, elements in viewport      | ``                  |
+| react-router-dom     | Route-based loading               | `} />` within ``    |
+
+---
+
+Lazy loading is a powerful tool for optimizing React applications, but it should be used judiciously and always with attention to user experience and maintainability[4][6][1].
+
+[1] https://react.dev/reference/react/lazy
+[2] https://legacy.reactjs.org/docs/code-splitting.html
+[3] https://www.npmjs.com/package/react-lazy-load
+[4] https://www.browserstack.com/guide/lazy-loading-in-react
+[5] https://www.youtube.com/watch?v=nS5qbSJLGx8
+[6] https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c
+[7] https://www.greatfrontend.com/blog/code-splitting-and-lazy-loading-in-react
